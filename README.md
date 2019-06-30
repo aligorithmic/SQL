@@ -15,7 +15,7 @@ USE SalesOrdersExample;
 SELECT *
 FROM information_schema.tables;
 
-/* List tables and views: */
+/* Create tables: */
 USE AdventureWorks2012 ;  
 CREATE TABLE ParentChildOrg  
    (  
@@ -24,12 +24,20 @@ CREATE TABLE ParentChildOrg
     EmployeeName nvarchar(50)   
    ) ;
 
+/* Create views: */
 USE AdventureWorks2012 ;   
 CREATE VIEW HumanResources.EmployeeHireDate  
 AS  
     SELECT p.FirstName, p.LastName, e.HireDate  
     FROM HumanResources.Employee AS e JOIN Person.Person AS  p  
     ON e.BusinessEntityID = p.BusinessEntityID ;
+
+/* To get the definition and properties of a view: */
+USE AdventureWorks2012;  
+SELECT definition, uses_ansi_nulls, uses_quoted_identifier, is_schema_bound  
+FROM sys.sql_modules  
+    WHERE object_id = OBJECT_ID('HumanResources.vEmployee');
+
 ```
 
 ## CREATE STORED PROCEDURE
