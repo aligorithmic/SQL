@@ -1,7 +1,9 @@
 # sql
 Code examples for SQL Server and PostgreSQL
 
-# SQL Server
+## SQL Server
+
+**Source: https://docs.microsoft.com/en-us/sql/sql-server/sql-server-technical-documentation**
 
 ```
 /* List all databases: */
@@ -12,9 +14,17 @@ FROM master.dbo.sysdatabases;
 USE SalesOrdersExample;
 SELECT *
 FROM information_schema.tables;
-``` 
 
-## CREATE STORED PROCEDURE
+USE AdventureWorks2012 ;  
+CREATE TABLE ParentChildOrg  
+   (  
+    BusinessEntityID int PRIMARY KEY,  
+    ManagerId int REFERENCES ParentChildOrg(BusinessEntityID),  
+    EmployeeName nvarchar(50)   
+   ) ;
+```
+
+### CREATE STORED PROCEDURE
 
 ```
 /* USE SalesOrdersExample; */
@@ -24,3 +34,15 @@ AS
 SELECT * FROM Customers;
 
 ```
+
+### QUERY WITH JOIN
+**FROM first_table join_type second_table [ON (join_condition)]**
+
+```
+SELECT ProductID, Purchasing.Vendor.BusinessEntityID, Name
+FROM Purchasing.ProductVendor JOIN Purchasing.Vendor
+    ON (Purchasing.ProductVendor.BusinessEntityID = Purchasing.Vendor.BusinessEntityID)
+WHERE StandardPrice > $10
+    AND Name LIKE N'F%'
+```
+
