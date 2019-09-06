@@ -62,6 +62,23 @@ WHERE StandardPrice > $10
     AND Name LIKE N'F%'
 ```
 
+## CASE
+
+The CASE statement has the functionality of an IF-THEN-ELSE statement. **IMPORTANT:** All returned values (from every clause) must have the same Data Type (e.g., all Numbers, all Varchar, etc.)
+
+```
+(CASE WHEN table1.Amount IS NOT NULL THEN CONVERT(varchar(MAX), table1.Amount)
+            ELSE
+               (CASE WHEN table1.Comment IS NOT NULL THEN CONVERT(varchar(MAX), table1.Comment)
+                   ELSE
+                     (SELECT CONVERT(varchar(MAX), table2.Comment)
+                      FROM table2
+                      INNER JOIN table1 ON table1.ID = table2.ID
+                      WHERE table2.Code = '1234')
+                 END)
+END) AS Amount
+```
+
 ## QUERY PERFORMANCE TUNNING
 
 1. Use SELECT Fields instead of SELECT *
