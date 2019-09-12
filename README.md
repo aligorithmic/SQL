@@ -109,7 +109,12 @@ ISNULL ( check_expression , replacement_value ); -- Checks the first value, if i
 ```
 This example uses ISNULL to test for NULL values in the column MinPaymentAmount and display the value 0.00 for those rows:
 ```
-   SELECT COALESCE (NULL,NULL,$110,NULL,NULL); -- retruns $110
+   -- Uses AdventureWorks  
+  
+   SELECT ResellerName,   
+          ISNULL(MinPaymentAmount,0) AS MinimumPayment  
+   FROM dbo.DimReseller  
+   ORDER BY ResellerName;
 ```
 
 ## QUERY PERFORMANCE TUNNING
