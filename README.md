@@ -99,7 +99,10 @@ Examples:
    SELECT firstName +' '+COALESCE(MiddleName,'') +' '+ LastName FROM someTable; -- returns MiddleName OR blank
 
 ```
-Coalesce function is NOT just a more powerful form of ISNULL.
+
+COALESCE() is a better choice thatn ISNULL(). COALESCE is ANSI-Standard, so you will also find it in other RDBMSs.
+
+Data type determination of the resulting expression is different. ISNULL uses the data type of the first parameter, COALESCE follows the CASE expression rules and returns the data type of value with the highest precedence.
 
 ## ISNULL()
 
