@@ -79,6 +79,39 @@ The CASE statement has the functionality of an IF-THEN-ELSE statement. **IMPORTA
 END) AS Amount
 ```
 
+## Function Definition
+
+To display the definition of a user-defined rule, default, unencrypted Transact-SQL stored procedure, user-defined Transact-SQL **function**, trigger, computed column, CHECK constraint, view, or system object such as a system stored procedure:
+```
+EXEC [ServerName].[DatabaseName].dbo.sp_helptext 'storedProcedureName';
+```
+
+## SQL Server COALESCE() Function
+
+To return the first non-null value in a list:
+```
+COALESCE(val1, val2, ...., val_n);
+```
+Examples:
+```
+   SELECT COALESCE (NULL,NULL,$110,NULL,NULL); -- retruns $110
+
+   SELECT firstName +' '+COALESCE(MiddleName,'') +' '+ LastName FROM someTable; -- returns MiddleName OR blank
+
+```
+Coalesce function is NOT just a more powerful form of ISNULL.
+
+## ISNULL()
+
+To replace NULL with the specified replacement value:
+```
+ISNULL ( check_expression , replacement_value ); -- Checks the first value, if it is NULL, returns the replacement_value
+```
+This example uses ISNULL to test for NULL values in the column MinPaymentAmount and display the value 0.00 for those rows:
+```
+   SELECT COALESCE (NULL,NULL,$110,NULL,NULL); -- retruns $110
+```
+
 ## QUERY PERFORMANCE TUNNING
 
 1. Use SELECT Fields instead of SELECT *
