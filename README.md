@@ -86,7 +86,7 @@ To display the definition of a user-defined rule, default, unencrypted Transact-
 EXEC [ServerName].[DatabaseName].dbo.sp_helptext 'storedProcedureName';
 ```
 
-## SQL Server COALESCE() Function
+## COALESCE() Function
 
 To return the first non-null value in a list:
 ```
