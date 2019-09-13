@@ -42,11 +42,11 @@ FROM sys.sql_modules
 
 ## Function VS Stored Procedure
 
-Function must return a value; Stored procedure may or not return values.<br/>
-Functions allow only Select statement, they will not allow using DML statements. Stored Procedures can have select statements as well as DML statements (e.g., insert, update, delete).<br/>
-Functions can be called from select statement. Procedures can not be called from Select/Where/Having statements. Execute/Exec
-statement can be used to call/execute stored procedure.<br/>
-Function will allow only input parameters, does not support output parameters. Procedure can have both input and output parameters.
+* Function must return a value; Stored procedure may or not return values.
+* Functions allow only Select statement, they will not allow using DML statements. Stored Procedures can have select statements as well as DML statements (e.g., insert, update, delete).
+* Functions can be called from select statement. Procedures can not be called from Select/Where/Having statements. Execute/Exec
+statement can be used to call/execute stored procedure.
+* Function will allow only input parameters, does not support output parameters. Procedure can have both input and output parameters.
 
 ## CREATE Function
 
