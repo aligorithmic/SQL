@@ -82,6 +82,13 @@ BEGIN
     RETURN @ret;  
 END;
 ```
+## GET Function OR Stored Procedure Definition
+
+To display the definition of a user-defined rule, default, unencrypted Transact-SQL stored procedure, user-defined Transact-SQL **function**, trigger, computed column, CHECK constraint, view, or system object such as a system stored procedure:
+```
+EXEC databasename.dbo.sp_helptext 'helloworldfunction';
+EXEC [ServerName].[DatabaseName].dbo.sp_helptext 'storedProcedureName';
+```
 
 ## CREATE Stored Procedure
 
@@ -120,13 +127,6 @@ The CASE statement has the functionality of an IF-THEN-ELSE statement. **IMPORTA
                       WHERE table2.Code = '1234')
                  END)
 END) AS Amount
-```
-
-## Function Definition
-
-To display the definition of a user-defined rule, default, unencrypted Transact-SQL stored procedure, user-defined Transact-SQL **function**, trigger, computed column, CHECK constraint, view, or system object such as a system stored procedure:
-```
-EXEC [ServerName].[DatabaseName].dbo.sp_helptext 'storedProcedureName';
 ```
 
 ## COALESCE() Function
