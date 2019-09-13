@@ -40,7 +40,50 @@ FROM sys.sql_modules
 
 ```
 
-## CREATE STORED PROCEDURE
+## Function VS Stored Procedure
+
+Function must return a value; Stored procedure may or not return values.
+Functions allow only Select statement, they will not allow using DML statements. Stored Procedures can have select statements as well as DML statements (e.g., insert, update, delete).
+Functions can be called from select statement. Procedures can not be called from Select/Where/Having statements. Execute/Exec
+statement can be used to call/execute stored procedure.
+Function will allow only input parameters, does not support output parameters. Procedure can have both input and output parameters.
+
+## CREATE Function
+
+```
+CREATE FUNCTION dbo.helloworldfunction()
+RETURNS varchar(20)
+AS 
+BEGIN
+	 RETURN 'Hello world'
+END
+```
+
+Execute function as:
+```SELECT databasename.dbo.helloworldfunction();```
+
+Another example:
+```
+IF OBJECT_ID (N'dbo.ufnGetInventoryStock', N'FN') IS NOT NULL  
+    DROP FUNCTION ufnGetInventoryStock;  
+GO  
+CREATE FUNCTION dbo.ufnGetInventoryStock(@ProductID int)  
+RETURNS int   
+AS   
+-- Returns the stock level for the product.  
+BEGIN  
+    DECLARE @ret int;  
+    SELECT @ret = SUM(p.Quantity)   
+    FROM Production.ProductInventory p   
+    WHERE p.ProductID = @ProductID   
+        AND p.LocationID = '6';  
+     IF (@ret IS NULL)   
+        SET @ret = 0;  
+    RETURN @ret;  
+END;
+```
+
+## CREATE Stored Procedure
 
 ```
 /* USE SalesOrdersExample; */
