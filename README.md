@@ -163,6 +163,46 @@ This example uses ISNULL to test for NULL values in the column MinPaymentAmount 
    ORDER BY ResellerName;
 ```
 
+## RANK and DENSE_RANK
+
+Returns the rank of each row within the partition of a result set. The rank of a row is one plus the number of ranks that come before the row in question.
+
+ROW_NUMBER and RANK are similar. ROW_NUMBER numbers all rows sequentially (for example 1, 2, 3, 4, 5). RANK provides the same numeric value for ties (for example 1, 2, 2, 4, 5).
+
+DENSE_RANK 
+
+```
+RANK ( ) OVER ( [ partition_by_clause ] order_by_clause ) 
+```
+
+Example:
+```
+USE AdventureWorks2012;  
+GO  
+SELECT i.ProductID, p.Name, i.LocationID, i.Quantity  
+    ,RANK() OVER   
+    (PARTITION BY i.LocationID ORDER BY i.Quantity DESC) AS Rank  
+FROM Production.ProductInventory AS i   
+INNER JOIN Production.Product AS p   
+    ON i.ProductID = p.ProductID  
+WHERE i.LocationID BETWEEN 3 AND 4  
+ORDER BY i.LocationID;  
+GO
+```
+Using RANK to return one record:
+
+```
+SELECT *
+	FROM (SELECT id,
+		col1,
+		col2,
+		col3,
+		RANK () OVER (PARTITION BY id
+				ORDER BY id DESC) rnk
+		FROM a_table) x
+WHERE x.rnk = 1;
+```
+
 ## QUERY PERFORMANCE TUNNING
 
 1. Use SELECT Fields instead of SELECT *
