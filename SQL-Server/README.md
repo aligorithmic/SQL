@@ -1,7 +1,4 @@
-# sql
-Code examples for SQL Server and PostgreSQL
-
-# SQL Server
+# SQL Code examples for SQL Server.
 
 **Source: https://docs.microsoft.com/en-us/sql/sql-server/sql-server-technical-documentation**
 
