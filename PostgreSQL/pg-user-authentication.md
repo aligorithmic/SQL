@@ -1,6 +1,6 @@
 # 4 types of PostgreSQL user authentication methods you must know
 
-https://postgreshelp.com/postgresql-user-authentication-demystified/
+Source: https://postgreshelp.com/postgresql-user-authentication-demystified/
 
 How is the PostgreSQL user authentication done when you login to the database?
 By default, when PostgreSQL server is installed, a user called Postgres and a database called Postgres is created. There will be two more databases called template0 and template1 are created by default, but we limit the post with user authentication only.
@@ -33,7 +33,7 @@ But the question is how did it login without prompting for the password or even 
 The reason why it did not ask for a password is its authentication method. The authentication method configuration will be there in **pg_hba.conf** file under the data directory. The default authentication method for PostgreSQL server is either ident or peer. There are two more authentication methods which are widely used are trust and md5.
 
 ### PostgreSQL User Authentication types:
-#### Peer Authentication:
+#### 1. Peer Authentication:
 The peer authentication method works by obtaining the client's operating system username from the kernel and using it as the allowed database username (with optional username mapping). This method is only supported on local connections.
 ```
 [postgres@postgreshelp ~]$ psql -U postgres
@@ -54,10 +54,11 @@ postgres=# \q
 ```
 Here, as testing user is not there at OS level my authentication failed. To resolve the above issue, we have to map the operating system username to a database user.
 
-#### Username Mapping:
+**Username Mapping:**
 username mapping can be done in two steps. 
-STEP 1: Add a mapping configuration in pg_ident.conf file.
-STEP 2: specify map=map-name in the options field in pg_hba.conf.
+STEP 1: Add a mapping configuration in **pg_ident.conf** file.
+STEP 2: specify map=map-name in the options field in **pg_hba.conf**.
+
 STEP 1:
 ```
 [postgres@postgreshelp data]$ cat pg_ident.conf
@@ -84,8 +85,7 @@ Type "help" for help.
  
 postgres=>
 ```
-
-#### Trust Authentication
+#### 2. Trust Authentication
 When trust authentication is specified, PostgreSQL assumes that anyone who can connect to the server is authorized to access the database with whatever database username they specify (even superuser names). Of course, restrictions made in the database and user columns still apply. This method should only be used when there is adequate operating-system-level protection on connections to the server. This method allows anyone that can connect to the PostgreSQL database server to login as any PostgreSQL user they wish, without the need for a password or any other authentication. The following is the line mentioned in pg_hba.conf for local authentication:
 
 local  all              all                     trust
@@ -97,8 +97,7 @@ Type "help" for help.
  
 postgres=>
 ```
-
-#### md5 Authentication (part of Password Authentication method)
+#### 3. md5 Authentication (part of Password Authentication method)
 There are several password-based authentication methods. These methods operate similarly but differ in how the users' passwords are stored on the server and how the password provided by a client is sent across the connection: scram-sha-256, md2, or password.
 Requires the client to supply a double-MD5-hashed password for authentication. The following is the line mentioned in pg_hba.conf for md5 authentication:
 
@@ -126,7 +125,7 @@ Type "help" for help.
 postgres=>
 ```
 
-#### ident Authentication
+#### 4. ident Authentication
 The ident authentication method works by obtaining the client's operating system username from an ident server and using it as the allowed database username (with an optional username mapping). This is only supported on TCP/IP connections.
 Obtain the operating system username of the client by contacting the ident server on the client and check if it matches the requested database username. Ident authentication can only be used on TCP/IP connections. When specified for local connections, peer authentication will be used instead. ident works similar to peer authentication.
 ```
