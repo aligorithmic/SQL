@@ -33,7 +33,7 @@ The reason why it did not ask for a password is its authentication method. The a
 
 ### PostgreSQL User Authentication types:
 #### 1. Peer Authentication:
-The peer authentication method works by obtaining the client's operating system username from the kernel and using it as the allowed database username (with optional username mapping). This method is only supported on local connections.
+The peer authentication method works by obtaining the client's operating system username from the kernel and using it as the allowed database username (with optional username mapping). **This method is only supported on local connections.**
 ```
 [postgres@postgreshelp ~]$ psql -U postgres
 psql (9.6.8)
@@ -48,7 +48,7 @@ postgres=# create user testing ;
 CREATE ROLE
 postgres=# \q
 [postgres@postgreshelp ~]$ psql -U testing
-<strong>psql: Peer authentication failed for user "testing"</strong>
+psql: Peer authentication failed for user "testing"
 [postgres@asristgdb ~]$
 ```
 Here, as testing user is not there at OS level my authentication failed. To resolve the above issue, we have to map the operating system username to a database user.
@@ -109,7 +109,7 @@ CREATE ROLE
 postgres=# \q
 [postgres@postgreshelp data]$ psql -U md5user
 Password for user md5user:
-<strong>psql: FATAL:  password authentication failed for user "md5user"</strong>
+psql: FATAL:  password authentication failed for user "md5user"
 [postgres@asristgdb data]$
 ```
 Here, as I have not supplied any password while creating the user, my login failed. After changing the password for the md5user I could log in to the database.
@@ -129,9 +129,9 @@ The ident authentication method works by obtaining the client's operating system
 Obtain the operating system username of the client by contacting the ident server on the client and check if it matches the requested database username. Ident authentication can only be used on TCP/IP connections. When specified for local connections, peer authentication will be used instead. ident works similar to peer authentication.
 ```
 [postgres@postgreshelp data]$ psql -d postgres -U md5user -h 10.10.12.143
-<strong>psql: FATAL:  Ident authentication failed for user "md5user"</strong>
+psql: FATAL:  Ident authentication failed for user "md5user"
 [postgres@postgreshelp data]$ psql -d postgres -U md5user
-<strong>psql: FATAL:  Peer authentication failed for user "md5user"</strong>
+psql: FATAL:  Peer authentication failed for user "md5user"
 [postgres@asristgdb data]$
 [postgres@postgreshelp data]$ cat pg_hba.conf | grep ident
 local  all              all             ident
