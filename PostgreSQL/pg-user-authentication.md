@@ -86,7 +86,7 @@ postgres=>
 ```
 #### 2. Trust Authentication
 When trust authentication is specified, PostgreSQL assumes that anyone who can connect to the server is authorized to access the database with whatever database username they specify (even superuser names). Of course, restrictions made in the database and user columns still apply. This method should only be used when there is adequate operating-system-level protection on connections to the server. This method allows anyone that can connect to the PostgreSQL database server to login as any PostgreSQL user they wish, without the need for a password or any other authentication. The following is the line mentioned in pg_hba.conf for local authentication:
-``
+```
 local  all              all                     trust
 ```
 Here, irrespective of the password given, the postgres server allows the user to login.
