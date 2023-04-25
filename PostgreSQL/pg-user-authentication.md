@@ -3,8 +3,7 @@
 Source: https://postgreshelp.com/postgresql-user-authentication-demystified/
 
 How is the PostgreSQL user authentication done when you login to the database?
-By default, when PostgreSQL server is installed, a user called Postgres and a database called Postgres is created. There will be two more databases called template0 and template1 are created by default, but we limit the post with user authentication only.
-If you want to login to the Postgres database with postgres user we simply query psql.
+By default, when PostgreSQL server is installed, a user called Postgres and a database called Postgres is created. There will be two more databases called template0 and template1 created by default. If you want to login to the Postgres database with postgres user we simply query psql.
 ```
 [postgres@postgreshelp data]$ psql
 psql (9.6.8)
