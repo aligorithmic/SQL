@@ -100,9 +100,9 @@ postgres=>
 #### 3. md5 Authentication (part of Password Authentication method)
 There are several password-based authentication methods. These methods operate similarly but differ in how the users' passwords are stored on the server and how the password provided by a client is sent across the connection: scram-sha-256, md2, or password.
 Requires the client to supply a double-MD5-hashed password for authentication. The following is the line mentioned in pg_hba.conf for md5 authentication:
-
+```
 local  all              all                     md5
-
+```
 How does it work?
 ```
 postgres=# create user md5user;
