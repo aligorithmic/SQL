@@ -9,7 +9,6 @@ If you want to login to the Postgres database with postgres user we simply query
 [postgres@postgreshelp data]$ psql
 psql (9.6.8)
 Type "help" for help.
-``` 
 postgres=#
 postgres=# select current_user;
 current_user
@@ -18,6 +17,7 @@ postgres
 (1 row)
  
 postgres=#
+```
 
 But what is the default password for Postgres user? The answer is simple, there is not any default password for Postgres user. The first thing we need to do after the database is created is to set the password for the Postgres user.
 How to Change a Password for PostgreSQL user?
