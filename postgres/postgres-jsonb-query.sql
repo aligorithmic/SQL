@@ -1,4 +1,9 @@
 -- Postgres JSONB Syntax
+
+With PostgreSQL 14 you can access JSON sub-objects with jsonb subscripting which is the standard way to access JSON.
+SELECT data['a']['b'][1]
+FROM jsonb_example;
+
 ----------
 -- NOTE: The notation in JSONPath differs from Postgres operators for manipulating JSON and from the notation of JSQuery.
 -- The hierarchy is denoted by dots:
