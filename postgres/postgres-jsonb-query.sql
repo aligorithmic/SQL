@@ -1,6 +1,6 @@
 -- Postgres JSONB Syntax
 
-With PostgreSQL 14 you can access JSON sub-objects with jsonb subscripting which is the standard way to access JSON.
+-- With PostgreSQL 14 you can access JSON sub-objects with jsonb subscripting which is the standard way to access JSON.
 SELECT data['a']['b'][1]
 FROM jsonb_example;
 
